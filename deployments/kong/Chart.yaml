@@ -1,0 +1,9 @@
+apiVersion: v2
+name: kong-gateway
+description: Kong Gateway – API gateway for ChatOpsLLM on Kubernetes
+type: application
+version: 0.1.0
+appVersion: "3.7.0"
+maintainers:
+  - name: Trần Quý Đạt
+    email: tranquydat.work@gmail.com

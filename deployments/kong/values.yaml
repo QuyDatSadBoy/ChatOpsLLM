@@ -1,0 +1,80 @@
+# Kong Gateway Helm values for ChatOpsLLM
+# Namespace: kong-gateway
+#
+# Author: Trần Quý Đạt <tranquydat.work@gmail.com>
+
+replicaCount: 2
+
+image:
+  repository: kong
+  tag: "3.7"
+  pullPolicy: IfNotPresent
+
+env:
+  database: "off"                # DB-less mode; declarative config via ConfigMap
+  proxy_listen: "0.0.0.0:8000"
+  admin_listen: "0.0.0.0:8001 ssl"
+  log_level: notice
+
+ingressController:
+  enabled: true
+  installCRDs: true
+
+proxy:
+  enabled: true
+  type: LoadBalancer
+  http:
+    enabled: true
+    servicePort: 80
+    containerPort: 8000
+  tls:
+    enabled: true
+    servicePort: 443
+    containerPort: 8443
+
+admin:
+  enabled: true
+  type: ClusterIP
+  http:
+    enabled: true
+    servicePort: 8001
+    containerPort: 8001
+
+# Rate-limiting and OIDC plugins applied globally
+plugins:
+  configMaps:
+    - name: kong-plugin-config
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 256Mi
+  limits:
+    cpu: 1000m
+    memory: 512Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+
+# Routes: Kong routes requests to the FastAPI backend service
+# Configured declaratively via kongplugin / KongIngress CRDs
+routes:
+  - name: chatopsllm-api
+    paths:
+      - /api
+    service: chatopsllm-api
+    strip_path: false
+    plugins:
+      - rate-limiting
+      - cors
+
+  - name: chatopsllm-ws
+    paths:
+      - /ws
+    service: chatopsllm-api
+    protocols:
+      - http
+      - https

@@ -1,0 +1,199 @@
+# =============================================================================
+# ChatOpsLLM – .gitignore
+# Author: Trần Quý Đạt <tranquydat.work@gmail.com>
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Python
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.pyo
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# Package managers
+.pdm.toml
+.pdm-python
+.pdm-build/
+__pypackages__/
+Pipfile.lock
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# -----------------------------------------------------------------------------
+# Testing & Coverage
+# -----------------------------------------------------------------------------
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+.ruff_cache/
+cover/
+junit*.xml
+
+# -----------------------------------------------------------------------------
+# Logs
+# -----------------------------------------------------------------------------
+*.log
+logs/
+apps/api/logs/
+
+# -----------------------------------------------------------------------------
+# Environment / Secrets – NEVER commit
+# -----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+apps/api/.env
+apps/web/.env
+apps/web/.env.local
+apps/web/.env.production
+apps/web/.env.production.local
+apps/web/.env.development.local
+apps/web/.env.test.local
+apps/data_pipeline/.env
+
+# Terraform
+iac/terraform/*.json
+iac/terraform/.terraform/
+iac/terraform/.terraform.lock.hcl
+iac/terraform/terraform.tfstate
+iac/terraform/terraform.tfstate.backup
+iac/terraform/tfplan
+
+# Ansible
+iac/ansible/secrets/
+iac/ansible/inventory
+iac/ansible/*.retry
+
+# -----------------------------------------------------------------------------
+# Node / Next.js
+# -----------------------------------------------------------------------------
+node_modules/
+**/node_modules/
+.next/
+out/
+apps/web/.next/
+apps/web/out/
+apps/web/build/
+.npm
+.eslintcache
+.vercel
+
+# -----------------------------------------------------------------------------
+# Celery
+# -----------------------------------------------------------------------------
+celerybeat-schedule
+celerybeat-schedule.db
+celerybeat.pid
+
+# -----------------------------------------------------------------------------
+# Redis
+# -----------------------------------------------------------------------------
+*.rdb
+dump.rdb
+apps/api/redis-data/
+redis-data/
+
+# -----------------------------------------------------------------------------
+# Jupyter
+# -----------------------------------------------------------------------------
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+apps/api/notebook/.ipynb_checkpoints/
+
+# -----------------------------------------------------------------------------
+# Kubernetes / Helm
+# -----------------------------------------------------------------------------
+*.kubeconfig
+kubeconfig
+deployments/**/charts/*.tgz
+
+# -----------------------------------------------------------------------------
+# Monitoring / Observability
+# -----------------------------------------------------------------------------
+monitoring/alertmanager_data/
+monitoring/prometheus_data/
+monitoring/grafana_data/
+deployments/monitoring/grafana_data/
+
+# -----------------------------------------------------------------------------
+# Type checkers & static analysis
+# -----------------------------------------------------------------------------
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+cython_debug/
+
+# -----------------------------------------------------------------------------
+# IDE / OS
+# -----------------------------------------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+**/.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# -----------------------------------------------------------------------------
+# Misc build artefacts
+# -----------------------------------------------------------------------------
+.pybuilder/
+target/
+/site
+docs/_build/
+*.spec
+*.manifest
+*.sage.py
+.scrapy
+.ropeproject
+.spyderproject
+.spyproject
